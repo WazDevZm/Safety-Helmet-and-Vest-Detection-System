@@ -9,7 +9,7 @@ import numpy as np
 from PIL import Image
 import io
 import time
-from ppe_detector import PPEDetector
+from ppe_detector_simple import PPEDetector
 
 # Configure page
 st.set_page_config(
