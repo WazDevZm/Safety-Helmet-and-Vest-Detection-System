@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
+/* SDA AYM Color Palette - White, Yellow, Green, Red Theme */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors */
+  --white: #ffffff;
+  --yellow: #FFD700;
+  --green: #228B22;
+  --red: #DC143C;
+  
+  /* Extended Palette */
+  --yellow-light: #FFF8E1;
+  --yellow-dark: #E6C200;
+  --green-light: #90EE90;
+  --green-dark: #006400;
+  --red-light: #FFB6C1;
+  --red-dark: #8B0000;
+  
+  /* Neutral Colors */
+  --gray-light: #F5F5F5;
+  --gray-medium: #CCCCCC;
+  --gray-dark: #333333;
+  --black: #000000;
+  
+  /* Background and Text */
+  --background: var(--white);
+  --foreground: var(--gray-dark);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-white: var(--white);
+  --color-yellow: var(--yellow);
+  --color-green: var(--green);
+  --color-red: var(--red);
+  --color-yellow-light: var(--yellow-light);
+  --color-yellow-dark: var(--yellow-dark);
+  --color-green-light: var(--green-light);
+  --color-green-dark: var(--green-dark);
+  --color-red-light: var(--red-light);
+  --color-red-dark: var(--red-dark);
+  --color-gray-light: var(--gray-light);
+  --color-gray-medium: var(--gray-medium);
+  --color-gray-dark: var(--gray-dark);
+  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
 }
+
+/* Custom utility classes */
+.text-aym-white { color: var(--white); }
+.text-aym-yellow { color: var(--yellow); }
+.text-aym-green { color: var(--green); }
+.text-aym-red { color: var(--red); }
+
+.bg-aym-white { background-color: var(--white); }
+.bg-aym-yellow { background-color: var(--yellow); }
+.bg-aym-green { background-color: var(--green); }
+.bg-aym-red { background-color: var(--red); }
+
+.border-aym-white { border-color: var(--white); }
+.border-aym-yellow { border-color: var(--yellow); }
+.border-aym-green { border-color: var(--green); }
+.border-aym-red { border-color: var(--red); }
