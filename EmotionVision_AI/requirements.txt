@@ -1,0 +1,35 @@
+# EmotionVision AI - Computer Vision Requirements
+# Real-time Emotion Detection System
+
+# Core Computer Vision
+opencv-python==4.8.1.78
+opencv-contrib-python==4.8.1.78
+
+# Deep Learning Framework
+tensorflow==2.13.0
+keras==2.13.1
+
+# Web Framework
+flask==2.3.3
+flask-cors==4.0.0
+
+# Data Processing
+numpy==1.24.3
+pandas==2.0.3
+
+# Image Processing
+Pillow==10.0.0
+scikit-image==0.21.0
+
+# Utilities
+requests==2.31.0
+python-dotenv==1.0.0
+
+# Development Tools (optional)
+jupyter==1.0.0
+matplotlib==3.7.2
+seaborn==0.12.2
+
+# Performance
+psutil==5.9.5
+

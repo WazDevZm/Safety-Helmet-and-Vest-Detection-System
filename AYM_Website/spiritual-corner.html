@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiritual Corner - Adventist Youth Ministries</title>
+    <meta name="description" content="Daily devotionals, Bible study resources, Ellen G. White quotes, and spiritual growth materials for young people.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/aym-logo.png" alt="AYM Logo" class="logo-img">
+                <span class="logo-text">AYM</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="ministries.html" class="nav-link">Ministries</a>
+                <a href="events.html" class="nav-link">Events</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="spiritual-corner.html" class="nav-link active">Spiritual Corner</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Spiritual Corner</h1>
+            <p>Grow in faith through daily devotionals, Bible study, and spiritual resources</p>
+        </div>
+    </section>
+
+    <!-- Daily Devotional -->
+    <section class="daily-devotional">
+        <div class="container">
+            <div class="devotional-card">
+                <div class="devotional-header">
+                    <div class="devotional-icon">
+                        <i class="fas fa-bible"></i>
+                    </div>
+                    <div class="devotional-title">
+                        <h2>Daily Devotional</h2>
+                        <p class="devotional-date" id="current-date"></p>
+                    </div>
+                </div>
+                <div class="devotional-content">
+                    <div class="verse-section">
+                        <h3 id="daily-verse-title">Today's Verse</h3>
+                        <blockquote id="daily-verse-text">
+                            "Don't let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity."
+                        </blockquote>
+                        <cite id="daily-verse-reference">1 Timothy 4:12 (NIV)</cite>
+                    </div>
+                    <div class="reflection-section">
+                        <h3>Reflection</h3>
+                        <p id="daily-reflection">
+                            As young people, we often feel that our age limits our ability to make a difference. But God's Word reminds us that youth is not a barrier to spiritual leadership. We can be examples of Christ's love and character in everything we do - in our words, actions, relationships, and faith. Today, let's commit to being positive examples in our families, schools, and communities.
+                        </p>
+                    </div>
+                    <div class="prayer-section">
+                        <h3>Prayer Focus</h3>
+                        <p id="daily-prayer">
+                            Lord, help me to be a positive example to others today. Give me the wisdom to speak words that build up, the strength to act with integrity, and the love to serve others selflessly. May my life reflect Your character and draw others closer to You. Amen.
+                        </p>
+                    </div>
+                    <div class="devotional-actions">
+                        <button class="btn btn-primary" onclick="loadNewDevotional()">New Devotional</button>
+                        <button class="btn btn-secondary" onclick="shareDevotional()">Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ellen G. White Quotes -->
+    <section class="egw-quotes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Inspirational Quotes</h2>
+                <p>Words of wisdom from Ellen G. White for young people</p>
+            </div>
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <blockquote>
+                        "The youth who finds his joy in reading the word of God and in prayer will be constantly receiving light and strength from the Source of all power."
+                    </blockquote>
+                    <cite>Ellen G. White</cite>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <blockquote>
+                        "The greatest want of the world is the want of men—men who will not be bought or sold, men who in their inmost souls are true and honest, men who do not fear to call sin by its right name, men whose conscience is as true to duty as the needle to the pole."
+                    </blockquote>
+                    <cite>Ellen G. White</cite>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <blockquote>
+                        "The youth of today are to be the church of tomorrow. They are to be trained to be workers for God, and to carry forward the work of reform."
+                    </blockquote>
+                    <cite>Ellen G. White</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bible Study Resources -->
+    <section class="bible-study-resources">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bible Study Resources</h2>
+                <p>Deepen your understanding of Scripture</p>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Youth Bible Study Guide</h3>
+                    <p>Comprehensive study guide designed specifically for young people with discussion questions and practical applications.</p>
+                    <a href="resources.html" class="resource-link">Start Studying</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Small Group Studies</h3>
+                    <p>Join or start a small group Bible study with other young people in your area.</p>
+                    <a href="contact.html" class="resource-link">Join Group</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Studies</h3>
+                    <p>Watch engaging video Bible studies led by experienced teachers and youth leaders.</p>
+                    <a href="resources.html" class="resource-link">Watch Videos</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile App</h3>
+                    <p>Access Bible study materials, devotionals, and spiritual resources on your mobile device.</p>
+                    <a href="#" class="resource-link">Download App</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Member Testimonies -->
+    <section class="testimonies">
+        <div class="container">
+            <div class="section-header">
+                <h2>Member Testimonies</h2>
+                <p>Hear from other young people about their spiritual journey</p>
+            </div>
+            <div class="testimonies-grid">
+                <div class="testimony-card">
+                    <div class="testimony-content">
+                        <blockquote>
+                            "Through AYM, I've learned that being young doesn't mean I can't make a difference. I've discovered my purpose and grown closer to God through service and fellowship."
+                        </blockquote>
+                        <div class="testimony-author">
+                            <div class="author-avatar">
+                                <img src="images/testimony-1.jpg" alt="Sarah Johnson" class="avatar-img">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Pathfinder Club Member</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimony-card">
+                    <div class="testimony-content">
+                        <blockquote>
+                            "The Bible study groups have transformed my understanding of Scripture. I now see how God's Word applies to my daily life and challenges."
+                        </blockquote>
+                        <div class="testimony-author">
+                            <div class="author-avatar">
+                                <img src="images/testimony-2.jpg" alt="Michael Brown" class="avatar-img">
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Brown</h4>
+                                <p>Ambassadors for Christ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimony-card">
+                    <div class="testimony-content">
+                        <blockquote>
+                            "Serving in our community through AYM has shown me the joy of helping others. It's amazing how God uses us to bless others when we're willing to serve."
+                        </blockquote>
+                        <div class="testimony-author">
+                            <div class="author-avatar">
+                                <img src="images/testimony-3.jpg" alt="Emily Davis" class="avatar-img">
+                            </div>
+                            <div class="author-info">
+                                <h4>Emily Davis</h4>
+                                <p>Community Service Leader</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prayer Requests -->
+    <section class="prayer-requests">
+        <div class="container">
+            <div class="section-header">
+                <h2>Prayer Requests</h2>
+                <p>Share your prayer requests and pray for others</p>
+            </div>
+            <div class="prayer-content">
+                <div class="prayer-form">
+                    <h3>Submit Prayer Request</h3>
+                    <form id="prayerRequestForm">
+                        <div class="form-group">
+                            <label for="prayer-name">Your Name (Optional)</label>
+                            <input type="text" id="prayer-name" name="prayer-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="prayer-request">Prayer Request *</label>
+                            <textarea id="prayer-request" name="prayer-request" rows="4" required placeholder="Please share your prayer request..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="anonymous" value="yes">
+                                Submit anonymously
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </form>
+                </div>
+                <div class="prayer-list">
+                    <h3>Recent Prayer Requests</h3>
+                    <div class="prayer-items">
+                        <div class="prayer-item">
+                            <p class="prayer-text">Praying for strength during final exams and wisdom in my studies.</p>
+                            <span class="prayer-date">2 days ago</span>
+                        </div>
+                        <div class="prayer-item">
+                            <p class="prayer-text">Please pray for my family as we go through a difficult time.</p>
+                            <span class="prayer-date">1 week ago</span>
+                        </div>
+                        <div class="prayer-item">
+                            <p class="prayer-text">Praying for guidance in choosing the right career path.</p>
+                            <span class="prayer-date">2 weeks ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spiritual Growth Tips -->
+    <section class="spiritual-tips">
+        <div class="container">
+            <div class="section-header">
+                <h2>Spiritual Growth Tips</h2>
+                <p>Practical ways to grow in your faith</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-pray"></i>
+                    </div>
+                    <h3>Daily Prayer</h3>
+                    <p>Start and end each day with prayer. Talk to God about your joys, concerns, and gratitude.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-bible"></i>
+                    </div>
+                    <h3>Bible Reading</h3>
+                    <p>Read a chapter or verse daily. Use a reading plan to guide your study and keep you consistent.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Fellowship</h3>
+                    <p>Connect with other believers regularly. Join Bible study groups and attend church services.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Service</h3>
+                    <p>Serve others in your community. Look for opportunities to help and make a positive difference.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Worship</h3>
+                    <p>Engage in worship through music, praise, and thanksgiving. Express your love for God creatively.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Reflection</h3>
+                    <p>Take time to reflect on your spiritual journey. Journal your thoughts and experiences with God.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Adventist Youth Ministries</h3>
+                    <p>Empowering young people to serve God and community through faith, fellowship, and service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="ministries.html">Ministries</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 12501 Old Columbia Pike, Silver Spring, MD 20904</p>
+                    <p><i class="fas fa-phone"></i> +1 (301) 680-6000</p>
+                    <p><i class="fas fa-envelope"></i> aym@gc.adventist.org</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Adventist Youth Ministries. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+# AYM Website Images Directory
+
+This directory contains images for the AYM website:
+
+## Required Images:
+- aym-logo.png - AYM official logo
+- hero-youth-group.jpg - Hero section image showing youth group
+- about-aym.jpg - About section image
+- adventurer-club-logo.png - Adventurer Club logo
+- pathfinder-club-logo.png - Pathfinder Club logo
+- pcm-logo.png - PCM logo
+- youth-ministry-1.jpg - Youth ministry activities
+- youth-ministry-2.jpg - Youth ministry activities
+- youth-ministry-3.jpg - Youth ministry activities
+- event-1.jpg - Youth convention image
+- event-2.jpg - Community service image
+- event-3.jpg - Leadership workshop image
+
+## Image Specifications:
+- Hero images: 1200x800px minimum
+- Logo images: 200x200px minimum
+- Card images: 400x300px minimum
+- All images should be optimized for web (compressed)
+- Use WebP format when possible for better performance
+
+## Color Guidelines:
+Images should complement the AYM color scheme:
+- Adventurer Blue: #2E5BBA
+- Pathfinder Red: #DC143C
+- Pathfinder Yellow: #FFD700
+- AYM Green: #228B22
+- PCM Blue: #4169E1

@@ -322,3 +322,4 @@ The **Ore Quality Classification System** is a complete, working AI-powered solu
 
 **🚀 The system is ready for immediate use in mining operations, research, and educational applications!**
 
+

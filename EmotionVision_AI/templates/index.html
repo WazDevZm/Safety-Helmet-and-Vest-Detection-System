@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmotionVision AI - Real-time Emotion Detection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .video-section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+        }
+
+        #videoStream {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #56ab2f, #a8e6cf);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .stats-section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .current-emotion {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .emotion-display {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .emotion-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .emotion-legend {
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-right: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-brain"></i> EmotionVision AI</h1>
+            <p>Real-time Emotion Detection with Advanced Computer Vision</p>
+        </div>
+
+        <div class="main-content">
+            <div class="video-section">
+                <h3><i class="fas fa-video"></i> Live Camera Feed</h3>
+                <div class="video-container">
+                    <div id="loadingIndicator" class="loading">
+                        <div class="spinner"></div>
+                        Starting camera...
+                    </div>
+                    <img id="videoStream" style="display: none;" alt="Video Stream">
+                    <div class="video-overlay" id="emotionOverlay" style="display: none;">
+                        <span id="currentEmotionText">Neutral</span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="startDetection()">
+                        <i class="fas fa-play"></i> Start Detection
+                    </button>
+                    <button class="btn btn-danger" onclick="stopDetection()">
+                        <i class="fas fa-stop"></i> Stop Detection
+                    </button>
+                    <button class="btn btn-success" onclick="resetStats()">
+                        <i class="fas fa-refresh"></i> Reset Stats
+                    </button>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <h3><i class="fas fa-chart-line"></i> Emotion Analytics</h3>
+                <div class="current-emotion">
+                    <div class="emotion-display" id="emotionIcon">😐</div>
+                    <div class="emotion-text" id="emotionName">Neutral</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceBar" style="width: 0%"></div>
+                    </div>
+                    <div id="confidenceText">Confidence: 0%</div>
+                </div>
+
+                <div class="stats-grid" id="statsGrid">
+                    <!-- Stats will be populated by JavaScript -->
+                </div>
+
+                <div class="emotion-legend">
+                    <h4>Emotion Legend</h4>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #00ff00;"></div>
+                        <span>Happy</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ff0000;"></div>
+                        <span>Angry</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #0000ff;"></div>
+                        <span>Sad</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ffff00;"></div>
+                        <span>Surprise</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ff00ff;"></div>
+                        <span>Fear</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #800080;"></div>
+                        <span>Disgust</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #808080;"></div>
+                        <span>Neutral</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><i class="fas fa-code"></i> Built with OpenCV, TensorFlow, and Flask</p>
+            <p>Powered by Advanced Computer Vision & Deep Learning</p>
+        </div>
+    </div>
+
+    <script>
+        let isDetectionRunning = false;
+        let updateInterval;
+
+        // Emotion icons mapping
+        const emotionIcons = {
+            'Happy': '😊',
+            'Sad': '😢',
+            'Angry': '😠',
+            'Surprise': '😲',
+            'Fear': '😨',
+            'Disgust': '🤢',
+            'Neutral': '😐'
+        };
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎭 EmotionVision AI - Web Interface Loaded');
+            startVideoStream();
+            startStatsUpdate();
+        });
+
+        function startVideoStream() {
+            const videoElement = document.getElementById('videoStream');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            
+            videoElement.src = '/video_feed';
+            videoElement.onload = function() {
+                loadingIndicator.style.display = 'none';
+                videoElement.style.display = 'block';
+            };
+        }
+
+        function startDetection() {
+            if (isDetectionRunning) return;
+            
+            fetch('/api/start')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        isDetectionRunning = true;
+                        document.getElementById('emotionOverlay').style.display = 'block';
+                        console.log('✅ Detection started');
+                    } else {
+                        console.error('❌ Failed to start detection:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('❌ Error starting detection:', error);
+                });
+        }
+
+        function stopDetection() {
+            if (!isDetectionRunning) return;
+            
+            fetch('/api/stop')
+                .then(response => response.json())
+                .then(data => {
+                    isDetectionRunning = false;
+                    document.getElementById('emotionOverlay').style.display = 'none';
+                    console.log('🛑 Detection stopped');
+                })
+                .catch(error => {
+                    console.error('❌ Error stopping detection:', error);
+                });
+        }
+
+        function resetStats() {
+            fetch('/api/reset')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('🔄 Statistics reset');
+                    updateStats();
+                })
+                .catch(error => {
+                    console.error('❌ Error resetting stats:', error);
+                });
+        }
+
+        function startStatsUpdate() {
+            updateInterval = setInterval(updateStats, 1000);
+        }
+
+        function updateStats() {
+            // Update current emotion
+            fetch('/api/emotion')
+                .then(response => response.json())
+                .then(data => {
+                    updateCurrentEmotion(data.emotion, data.confidence);
+                })
+                .catch(error => {
+                    console.error('❌ Error fetching emotion:', error);
+                });
+
+            // Update statistics
+            fetch('/api/stats')
+                .then(response => response.json())
+                .then(data => {
+                    updateStatsDisplay(data);
+                })
+                .catch(error => {
+                    console.error('❌ Error fetching stats:', error);
+                });
+        }
+
+        function updateCurrentEmotion(emotion, confidence) {
+            const emotionIcon = document.getElementById('emotionIcon');
+            const emotionName = document.getElementById('emotionName');
+            const confidenceBar = document.getElementById('confidenceBar');
+            const confidenceText = document.getElementById('confidenceText');
+            const emotionOverlay = document.getElementById('emotionOverlay');
+            const currentEmotionText = document.getElementById('currentEmotionText');
+
+            emotionIcon.textContent = emotionIcons[emotion] || '😐';
+            emotionName.textContent = emotion;
+            confidenceBar.style.width = (confidence * 100) + '%';
+            confidenceText.textContent = `Confidence: ${(confidence * 100).toFixed(1)}%`;
+            
+            if (isDetectionRunning) {
+                emotionOverlay.style.display = 'block';
+                currentEmotionText.textContent = emotion;
+            }
+        }
+
+        function updateStatsDisplay(stats) {
+            const statsGrid = document.getElementById('statsGrid');
+            statsGrid.innerHTML = '';
+
+            const emotions = ['Happy', 'Sad', 'Angry', 'Surprise', 'Fear', 'Disgust', 'Neutral'];
+            
+            emotions.forEach(emotion => {
+                const stat = stats[emotion] || { count: 0, percentage: 0 };
+                
+                const statCard = document.createElement('div');
+                statCard.className = 'stat-card';
+                statCard.innerHTML = `
+                    <div class="stat-value">${stat.count}</div>
+                    <div class="stat-label">${emotion}</div>
+                `;
+                
+                statsGrid.appendChild(statCard);
+            });
+        }
+
+        // Handle page visibility change
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                clearInterval(updateInterval);
+            } else {
+                startStatsUpdate();
+            }
+        });
+    </script>
+</body>
+</html>
+
